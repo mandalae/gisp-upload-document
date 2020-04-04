@@ -1,0 +1,26 @@
+{
+  "name": "gp-covid-response-backend-documents",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm test && rm -rf ./artifact || true && mkdir artifact && cp -R src artifact/ || true && cp -R node_modules artifact/ && cp index.js artifact/ && cp package.json artifact/ && cd artifact && zip -r covid-backend.zip ./*",
+    "test": "echo \"Error: no test specified\"",
+    "deploy": "npm run build && cd deployment && rm plan.tf || true && terraform init && terraform import aws_lambda_function.GPCovidResponse-uploadDocument GPCovidResponse-uploadDocument || true && terraform plan -out plan.tf && terraform apply plan.tf",
+    "deploy:sdlc": "npm run build && cd deployment && rm plan.tf || true && ../terraform init && ../terraform import aws_lambda_function.GPCovidResponse-uploadDocument GPCovidResponse-uploadDocument || true && ../terraform plan -out plan.tf && ../terraform apply plan.tf"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.643.0",
+    "file-type": "^14.1.4",
+    "moment": "^2.24.0",
+    "busboy": "^0.3.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^7.1.1",
+    "nyc": "^15.0.0",
+    "sinon": "^9.0.1"
+  }
+}
