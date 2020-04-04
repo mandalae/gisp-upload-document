@@ -76,7 +76,7 @@ exports.handler = async (event) => {
                         console.log(`${userItem.email} is uploading document: ${documentToUpload}`);
                     }
                 } else {
-                    credentialError('No login hash found');
+                    // credentialError('No login hash found');
                 }
 
                 console.log('Document to upload', documentToUpload);
