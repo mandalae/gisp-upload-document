@@ -97,13 +97,14 @@ exports.handler = async (event) => {
                 break;
             case 'POST':
                 const onlineResource = JSON.parse(event.body);
-                if (onlineResource.url && onlineResource.title) {
+                if (onlineResource.url && onlineResource.title && onlineResource.folder) {
                     const lastUpdated = new Date().getTime();
                     const params = {
                         TableName: 'gisp-online-resources',
                         Item:{
                             "url": onlineResource.url,
                             "title": onlineResource.title,
+                            "folder": onlineResource.folder,
                             "lastUpdated": lastUpdated
                         }
                     };
@@ -122,7 +123,7 @@ exports.handler = async (event) => {
                         }
                     });
                 } else {
-                    done({message: 'URL or title not set' });
+                    done({message: 'URL, title or folder not set', body: onlineResource });
                 }
                 break;
             case 'OPTIONS':
