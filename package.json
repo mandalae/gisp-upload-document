@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.643.0",
-    "file-type": "^14.1.4",
+    "file-type": "^16.5.4",
     "moment": "^2.24.0",
     "busboy": "^0.3.1"
   },
